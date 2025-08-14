@@ -1,0 +1,1213 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PawTreats - Galletas Premium para Perros</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-circle {
+            width: 80px;
+            height: 80px;
+            background: #FF4885;
+            border-radius: 50%;
+            border: 4px solid #000;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            padding: 8px 0;
+            position: relative;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .logo-text-top {
+            font-size: 10px;
+            font-weight: bold;
+            color: #3BBBFF;
+            text-shadow: 1px 1px 0px #000;
+            letter-spacing: 1px;
+            margin-top: 2px;
+        }
+
+        .logo-text-bottom {
+            font-size: 10px;
+            font-weight: bold;
+            color: #34D399;
+            text-shadow: 1px 1px 0px #000;
+            letter-spacing: 1px;
+            margin-bottom: 2px;
+        }
+
+        .dog-face {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+        }
+
+        .dog-head {
+            width: 28px;
+            height: 24px;
+            background: #222;
+            border-radius: 50% 50% 45% 45%;
+            position: relative;
+            border: 2px solid #000;
+        }
+
+        .dog-head::before,
+        .dog-head::after {
+            content: '';
+            position: absolute;
+            width: 8px;
+            height: 12px;
+            background: #222;
+            border-radius: 50% 50% 20% 20%;
+            border: 1px solid #000;
+            top: -4px;
+        }
+
+        .dog-head::before {
+            left: -2px;
+            transform: rotate(-15deg);
+        }
+
+        .dog-head::after {
+            right: -2px;
+            transform: rotate(15deg);
+        }
+
+        .dog-hat {
+            width: 24px;
+            height: 8px;
+            background: #FFA500;
+            border-radius: 12px 12px 0 0;
+            position: absolute;
+            top: -6px;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 1px solid #000;
+        }
+
+        .dog-eyes {
+            display: flex;
+            gap: 6px;
+            position: absolute;
+            top: 6px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .eye {
+            width: 6px;
+            height: 8px;
+            background: #3BBBFF;
+            border-radius: 50%;
+            border: 1px solid #000;
+            position: relative;
+        }
+
+        .pupil {
+            width: 4px;
+            height: 6px;
+            background: #000;
+            border-radius: 50%;
+            position: absolute;
+            top: 1px;
+            left: 1px;
+        }
+
+        .highlight {
+            width: 2px;
+            height: 2px;
+            background: white;
+            border-radius: 50%;
+            position: absolute;
+            top: 1px;
+            left: 1px;
+        }
+
+        .dog-nose {
+            width: 3px;
+            height: 2px;
+            background: #000;
+            position: absolute;
+            bottom: 4px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 0 0 50% 50%;
+        }
+
+        .dog-collar {
+            width: 32px;
+            height: 4px;
+            background: #FFA500;
+            border-radius: 2px;
+            margin-top: 2px;
+            border: 1px solid #000;
+        }
+
+        .logo-tagline {
+            font-size: 0.85rem;
+            color: #333;
+            font-weight: 500;
+            font-style: italic;
+            max-width: 180px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: #ff6b6b;
+            transform: translateY(-2px);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #ff6b6b;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%23f0f8ff" width="1200" height="600"/><circle fill="%23ffb3ba" cx="200" cy="150" r="50" opacity="0.3"/><circle fill="%23bae1ff" cx="800" cy="300" r="80" opacity="0.3"/><circle fill="%23ffffba" cx="1000" cy="100" r="60" opacity="0.3"/><path d="M0,400 Q300,350 600,400 T1200,400 L1200,600 L0,600 Z" fill="%23667eea" opacity="0.2"/></svg>');
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: white;
+        }
+
+        .hero-content h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero-content p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease 0.2s both;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(45deg, #ff6b6b, #ffa500);
+            color: white;
+            padding: 15px 35px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            animation: fadeInUp 1s ease 0.4s both;
+            box-shadow: 0 10px 30px rgba(255, 107, 107, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(255, 107, 107, 0.4);
+        }
+
+        /* Products Section */
+        .products {
+            padding: 6rem 0;
+            background: white;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 3rem;
+            margin-bottom: 3rem;
+            color: #333;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(45deg, #ff6b6b, #ffa500);
+            border-radius: 2px;
+        }
+
+        .main-product {
+            max-width: 1000px;
+            margin: 4rem auto;
+            background: white;
+            border-radius: 25px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .product-showcase {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 0;
+            align-items: center;
+        }
+
+        .product-image {
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #fecfef 100%);
+            padding: 4rem 2rem;
+            text-align: center;
+            position: relative;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .product-icon-large {
+            font-size: 8rem;
+            margin-bottom: 2rem;
+            filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.2));
+        }
+
+        .product-badges {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .badge {
+            background: rgba(255, 255, 255, 0.9);
+            color: #333;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .product-details {
+            padding: 3rem;
+        }
+
+        .product-details h3 {
+            font-size: 2.5rem;
+            color: #333;
+            margin-bottom: 1rem;
+        }
+
+        .product-description {
+            font-size: 1.2rem;
+            color: #666;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+
+        .nutrition-section {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+
+        .nutrition-section h4 {
+            font-size: 1.5rem;
+            color: #333;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .nutrition-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+
+        .nutrition-item {
+            background: white;
+            padding: 1rem;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+        }
+
+        .nutrition-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .ingredient {
+            font-weight: bold;
+            font-size: 1rem;
+            color: #333;
+            margin-bottom: 0.5rem;
+        }
+
+        .benefit {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .product-pricing {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 2rem 0;
+            padding: 1.5rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 15px;
+            color: white;
+        }
+
+        .price-container {
+            text-align: left;
+        }
+
+        .price {
+            font-size: 3rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .price-detail {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        .buy-button-large {
+            background: linear-gradient(45deg, #ff6b6b, #ffa500);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 25px rgba(255, 107, 107, 0.3);
+        }
+
+        .buy-button-large:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(255, 107, 107, 0.4);
+        }
+
+        .product-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .feature {
+            padding: 1rem;
+            background: linear-gradient(135deg, #e8f5e8 0%, #f0f8f0 100%);
+            border-radius: 10px;
+            font-weight: 500;
+            color: #2d5a2d;
+            text-align: center;
+        }
+
+        /* About Section */
+        .about {
+            padding: 6rem 0;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-text h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .about-text p {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            opacity: 0.9;
+        }
+
+        .features {
+            list-style: none;
+        }
+
+        .features li {
+            padding: 0.5rem 0;
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .features li::before {
+            content: '🐾';
+            position: absolute;
+            left: 0;
+            font-size: 1.2rem;
+        }
+
+        .about-image {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            backdrop-filter: blur(10px);
+        }
+
+        .dog-illustration {
+            font-size: 8rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 6rem 0;
+            background: white;
+        }
+
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+        }
+
+        .contact-form {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 3rem;
+            border-radius: 20px;
+            color: white;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.9);
+            font-size: 1rem;
+        }
+
+        .form-group textarea {
+            height: 120px;
+            resize: vertical;
+        }
+
+        .submit-button {
+            background: linear-gradient(45deg, #ff6b6b, #ffa500);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        .submit-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(255, 107, 107, 0.3);
+        }
+
+        .contact-info h3 {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            color: #333;
+        }
+
+        .contact-details {
+            list-style: none;
+        }
+
+        .contact-details li {
+            padding: 1rem 0;
+            border-bottom: 1px solid #eee;
+            font-size: 1.1rem;
+        }
+
+        .contact-details li:last-child {
+            border-bottom: none;
+        }
+
+        /* Footer */
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 3rem 0;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            color: #ff6b6b;
+        }
+
+        .footer-section p,
+        .footer-section a {
+            color: #ccc;
+            text-decoration: none;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .footer-section a:hover {
+            color: #ff6b6b;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #555;
+            padding-top: 2rem;
+            color: #999;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .logo {
+                flex-direction: column;
+                gap: 8px;
+                text-align: center;
+            }
+
+            .logo-circle {
+                width: 70px;
+                height: 70px;
+            }
+
+            .logo-tagline {
+                font-size: 0.7rem;
+                max-width: 200px;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-content p {
+                font-size: 1.1rem;
+            }
+
+            .about-content,
+            .contact-content {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .product-showcase {
+                grid-template-columns: 1fr;
+            }
+
+            .product-image {
+                padding: 3rem 2rem;
+            }
+
+            .product-icon-large {
+                font-size: 6rem;
+            }
+
+            .product-details {
+                padding: 2rem;
+            }
+
+            .product-details h3 {
+                font-size: 2rem;
+            }
+
+            .product-pricing {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+
+            .nutrition-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .vet-message {
+                bottom: 10px;
+                right: 10px;
+                left: 10px;
+                max-width: none;
+                font-size: 0.8rem;
+                padding: 12px 20px;
+            }
+        }
+
+        /* Floating Animation for Icons */
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+
+        @keyframes floating {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* Cart Counter */
+        .cart-counter {
+            background: #ff6b6b;
+            color: white;
+            border-radius: 50%;
+            width: 25px;
+            height: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: bold;
+            position: absolute;
+            top: -10px;
+            right: -10px;
+        }
+
+        .cart-icon {
+            position: relative;
+            cursor: pointer;
+            font-size: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .cart-icon:hover {
+            transform: scale(1.1);
+        }
+
+        /* Floating Veterinary Message */
+        .vet-message {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, #34D399 0%, #10B981 100%);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 50px;
+            box-shadow: 0 10px 30px rgba(16, 185, 129, 0.3);
+            z-index: 1000;
+            font-weight: bold;
+            font-size: 0.9rem;
+            max-width: 280px;
+            text-align: center;
+            animation: float-message 4s ease-in-out infinite;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .vet-message:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(16, 185, 129, 0.4);
+        }
+
+        .vet-message::before {
+            content: '🏥';
+            font-size: 1.2rem;
+            margin-right: 8px;
+        }
+
+        @keyframes float-message {
+            0%, 100% { 
+                transform: translateY(0) scale(1); 
+            }
+            25% { 
+                transform: translateY(-5px) scale(1.02); 
+            }
+            50% { 
+                transform: translateY(-10px) scale(1); 
+            }
+            75% { 
+                transform: translateY(-5px) scale(1.02); 
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo">
+                <div class="logo-circle">
+                    <div class="logo-text-top">PATITAS</div>
+                    <div class="dog-face">
+                        <div class="dog-head">
+                            <div class="dog-hat"></div>
+                            <div class="dog-eyes">
+                                <div class="eye left-eye">
+                                    <div class="pupil"></div>
+                                    <div class="highlight"></div>
+                                </div>
+                                <div class="eye right-eye">
+                                    <div class="pupil"></div>
+                                    <div class="highlight"></div>
+                                </div>
+                            </div>
+                            <div class="dog-nose"></div>
+                        </div>
+                        <div class="dog-collar"></div>
+                    </div>
+                    <div class="logo-text-bottom">DULCES</div>
+                </div>
+                <span class="logo-tagline">"Sabor que hace ladrar de alegría"</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#productos">Productos</a></li>
+                <li><a href="#nosotros">Nosotros</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+                <li>
+                    <div class="cart-icon" onclick="toggleCart()">
+                        🛒
+                        <span class="cart-counter" id="cartCounter">0</span>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="inicio" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Galletas Premium para tu Mejor Amigo</h1>
+                <p>Deliciosas, nutritivas y hechas con amor. Tu perro se merece lo mejor.</p>
+                <a href="#productos" class="cta-button">Explorar Productos</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="productos" class="products">
+        <div class="container">
+            <h2 class="section-title">Nuestro Producto Estrella</h2>
+            
+            <div class="main-product">
+                <div class="product-showcase">
+                    <div class="product-image">
+                        <div class="product-icon-large floating">🦴</div>
+                        <div class="product-badges">
+                            <span class="badge">100% Natural</span>
+                            <span class="badge">Rico en Omega</span>
+                        </div>
+                    </div>
+                    
+                    <div class="product-details">
+                        <h3>Galletas Premium de Pollo</h3>
+                        <p class="product-description">
+                            Deliciosas galletas artesanales elaboradas con los mejores ingredientes naturales. 
+                            Perfectas para entrenamientos, premios o simplemente para consentir a tu mejor amigo.
+                        </p>
+                        
+                        <div class="nutrition-section">
+                            <h4>🍃 Tabla Nutricional</h4>
+                            <div class="nutrition-grid">
+                                <div class="nutrition-item">
+                                    <span class="ingredient">🐔 Proteína de Pollo</span>
+                                    <span class="benefit">Fuente principal de proteínas</span>
+                                </div>
+                                <div class="nutrition-item">
+                                    <span class="ingredient">🥩 Grasas de Pollo</span>
+                                    <span class="benefit">Energía y sabor natural</span>
+                                </div>
+                                <div class="nutrition-item">
+                                    <span class="ingredient">🍠 Camote</span>
+                                    <span class="benefit">Carbohidratos saludables</span>
+                                </div>
+                                <div class="nutrition-item">
+                                    <span class="ingredient">🍎 Manzana</span>
+                                    <span class="benefit">Vitaminas y fibra</span>
+                                </div>
+                                <div class="nutrition-item">
+                                    <span class="ingredient">🥕 Zanahoria</span>
+                                    <span class="benefit">Beta-caroteno y vitamina A</span>
+                                </div>
+                                <div class="nutrition-item">
+                                    <span class="ingredient">🟢 Guisantes</span>
+                                    <span class="benefit">Proteína vegetal y fibra</span>
+                                </div>
+                                <div class="nutrition-item">
+                                    <span class="ingredient">🥜 Crema de Maní</span>
+                                    <span class="benefit">Grasas saludables y sabor</span>
+                                </div>
+                                <div class="nutrition-item">
+                                    <span class="ingredient">🐟 Omega 3 y 6</span>
+                                    <span class="benefit">Pelaje brillante y salud articular</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="product-pricing">
+                            <div class="price-container">
+                                <div class="price">₡2,700</div>
+                                <div class="price-detail">Paquete de 250g (IVA incluido)</div>
+                            </div>
+                            <button class="buy-button-large" onclick="addToCart('Galletas Premium de Pollo', 2700)">
+                                🛒 Agregar al Carrito
+                            </button>
+                        </div>
+                        
+                        <div class="product-features">
+                            <div class="feature">✅ Sin conservantes artificiales</div>
+                            <div class="feature">✅ Aprobado por veterinarios</div>
+                            <div class="feature">✅ Ideal para todos los tamaños</div>
+                            <div class="feature">✅ Textura crujiente</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="nosotros" class="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2>¿Por qué elegir Patitas Dulces?</h2>
+                    <p>En Patitas Dulces, creemos que nuestros amigos de cuatro patas merecen solo lo mejor. Cada galleta está elaborada con ingredientes naturales y frescos, sin conservantes artificiales ni aditivos dañinos.</p>
+                    
+                    <ul class="features">
+                        <li>Ingredientes 100% naturales</li>
+                        <li>Sin conservantes artificiales</li>
+                        <li>Recetas aprobadas por veterinarios</li>
+                        <li>Hechas con amor en pequeños lotes</li>
+                        <li>Envío gratuito en pedidos superiores a ₡8,100</li>
+                        <li>Garantía de satisfacción del 100%</li>
+                    </ul>
+                </div>
+                
+                <div class="about-image">
+                    <div class="dog-illustration">🐕‍🦺</div>
+                    <h3>Más de 1,000 perros felices</h3>
+                    <p>Nuestros clientes peludos no pueden dejar de mover la cola cuando ven nuestras galletas. ¡Únete a la familia Patitas Dulces!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contacto" class="contact">
+        <div class="container">
+            <h2 class="section-title">Contáctanos</h2>
+            <div class="contact-content">
+                <div class="contact-form">
+                    <h3>Envíanos un mensaje</h3>
+                    <form onsubmit="submitForm(event)">
+                        <div class="form-group">
+                            <label for="name">Nombre</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="pet-name">Nombre de tu mascota</label>
+                            <input type="text" id="pet-name" name="pet-name">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">Mensaje</label>
+                            <textarea id="message" name="message" placeholder="Cuéntanos sobre tu peludo amigo..." required></textarea>
+                        </div>
+                        
+                        <button type="submit" class="submit-button">Enviar Mensaje</button>
+                    </form>
+                </div>
+                
+                <div class="contact-info">
+                    <h3>Información de Contacto</h3>
+                    <ul class="contact-details">
+                        <li>📞 +506 2233-4455</li>
+                        <li>📧 PATITASDULCES@GMAIL.COM</li>
+                        <li>📍 San José, Costa Rica</li>
+                        <li>🕒 Lun - Vie: 8:00 AM - 6:00 PM</li>
+                        <li>🚚 Envío gratuito en el GAM</li>
+                    </ul>
+                    
+                    <h3 style="margin-top: 2rem;">Síguenos</h3>
+                    <div style="margin-top: 1rem;">
+                        <a href="#" style="font-size: 2rem; margin-right: 1rem;">📘</a>
+                        <a href="#" style="font-size: 2rem; margin-right: 1rem;">📷</a>
+                        <a href="#" style="font-size: 2rem; margin-right: 1rem;">🐦</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Patitas Dulces</h3>
+                    <p>Creando momentos felices para tu mascota desde 2025.</p>
+                    <p>Síguenos en nuestras redes sociales para ver fotos de nuestros clientes peludos.</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Enlaces Rápidos</h3>
+                    <a href="#productos">Nuestros Productos</a>
+                    <a href="#nosotros">Acerca de Nosotros</a>
+                    <a href="#contacto">Contáctanos</a>
+                    <a href="#">Política de Privacidad</a>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Servicio al Cliente</h3>
+                    <a href="#">Preguntas Frecuentes</a>
+                    <a href="#">Envíos y Devoluciones</a>
+                    <a href="#">Términos y Condiciones</a>
+                    <a href="#">Cuidado de Mascotas</a>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 Patitas Dulces. Todos los derechos reservados. Proyecto Universitario de Mercadeo.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating Veterinary Message -->
+    <div class="vet-message" onclick="showVetInfo()">
+        Avalado, estudiado y recomendado por veterinarios
+    </div>
+
+    <script>
+        function showVetInfo() {
+            showNotification('Nuestras galletas han sido estudiadas y aprobadas por veterinarios especializados en nutrición canina. ¡Tu mascota está en buenas manos! 🐾👨‍⚕️');
+        }
+
+        // Shopping Cart Functionality
+        let cart = [];
+        let cartTotal = 0;
+
+        function addToCart(productName, price) {
+            cart.push({name: productName, price: price});
+            cartTotal += price;
+            updateCartCounter();
+            
+            // Show success message
+            showNotification(`${productName} agregadas al carrito! 🎉`);
+        }
+
+        function updateCartCounter() {
+            document.getElementById('cartCounter').textContent = cart.length;
+        }
+
+        function toggleCart() {
+            if (cart.length === 0) {
+                showNotification('Tu carrito está vacío. ¡Agrega algunos productos deliciosos! 🐕');
+                return;
+            }
+
+            let cartItems = cart.map(item => `${item.name}: ₡${item.price.toFixed(0)}`).join('\n');
+            let message = `🛒 Tu Carrito:\n\n${cartItems}\n\nTotal: ₡${cartTotal.toFixed(0)}\n\n¿Te gustaría proceder al checkout?`;
+            
+            if (confirm(message)) {
+                processOrder();
+            }
+        }
+
+        function processOrder() {
+            showNotification('¡Gracias por tu pedido! 🐾 Tu peludo amigo estará muy feliz. Te contactaremos pronto.');
+            cart = [];
+            cartTotal = 0;
+            updateCartCounter();
+        }
+
+        function showNotification(message) {
+            // Create notification element
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed;
+                top: 100px;
+                right: 20px;
+                background: linear-gradient(45deg, #ff6b6b, #ffa500);
+                color: white;
+                padding: 15px 25px;
+                border-radius: 10px;
+                box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+                z-index: 10000;
+                font-weight: bold;
+                animation: slideIn 0.5s ease;
+                max-width: 300px;
+            `;
+            
+            notification.textContent = message;
+            document.body.appendChild(notification);
+
+            // Remove notification after 3 seconds
+            setTimeout(() => {
+                notification.style.animation = 'slideOut 0.5s ease';
+                setTimeout(() => {
+                    document.body.removeChild(notification);
+                }, 500);
+            }, 3000);
+        }
+
+        // Form Submission
+        function submitForm(event) {
+            event.preventDefault();
+            const name = document.getElementById('name').value;
+            const petName = document.getElementById('pet-name').value;
+            
+            let message = `¡Gracias ${name}! 🐕 Hemos recibido tu mensaje.`;
+            if (petName) {
+                message += ` Esperamos conocer pronto a ${petName}!`;
+            }
+            
+            showNotification(message);
+            event.target.reset();
+        }
+
+        // Smooth Scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add CSS for animations
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes slideIn {
+                from {
+                    transform: translateX(300px);
+                    opacity: 0;
+                }
+                to {
+                    transform: translateX(0);
+                    opacity: 1;
+                }
+            }
+            
+            @keyframes slideOut {
+                from {
+                    transform: translateX(0);
+                    opacity: 1;
+                }
+                to {
+                    transform: translateX(300px);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            updateCartCounter();
+        });
+    </script>
+</body>
+</html>
